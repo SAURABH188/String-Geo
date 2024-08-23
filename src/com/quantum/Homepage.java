@@ -10,25 +10,27 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 public class Homepage {
-		 WebDriver driver = null;
-			@BeforeSuite
-			 @Test (priority= 1)
-			  //TEST CASE NO 1
-			  		public void setUp() {
-				  System.setProperty("webdriver.chrome.driver", "C:\\Users\\SAURABH\\Desktop\\chromedriver-win64\\chromedriver.exe");
-	  			  driver=new ChromeDriver();  
-			  			  driver.get("https://www.stringevolve.in/");
-			  			  driver.manage().window().maximize();
-			  			 driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);	  			
-			  }
-			@AfterSuite
-			public void teardown() {
-				  driver.close();
-			}
+	private WebDriver driver;
+    private String baseUrl = "https://stringgeo.com/";
+	
+	 @BeforeClass
+	  //TEST CASE NO 1
+	  		public void setUp() {
+			  System.setProperty("webdriver.chrome.driver", "C:\\Users\\SAURABH\\Downloads\\chromedriver-win64 (3)\\chromedriver-win64\\chromedriver.exe");
+	        driver = new ChromeDriver();
+	        driver.get(baseUrl);
+	  			  driver.manage().window().maximize();
+		  			 driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+	 }
+		@AfterSuite
+		public void teardown() {
+			  driver.close();
+		}
 			 @Test (priority= 2)
 			  //TEST CASE NO 39 Verify Homepage Loads Successfully 
 			  public void VerifyHomepageLoadsSuccessfully() throws InterruptedException  {

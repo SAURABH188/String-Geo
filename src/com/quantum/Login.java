@@ -13,21 +13,23 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 
 public class Login {
-	 WebDriver driver = null;
-		@BeforeSuite
-		 @Test (priority= 1)
-		  //TEST CASE NO 1
-		  		public void setUp() {
-			  System.setProperty("webdriver.chrome.driver", "C:\\Users\\SAURABH\\Desktop\\chromedriver-win64\\chromedriver.exe");
-  			  driver=new ChromeDriver();  
-		  			  driver.get("https://www.stringevolve.in/");
-		  			  driver.manage().window().maximize();
-		  			 driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);	  			
-		  }
+	private WebDriver driver;
+    private String baseUrl = "https://stringgeo.com/";
+	
+	 @BeforeClass
+	  //TEST CASE NO 1
+	  		public void setUp() {
+			  System.setProperty("webdriver.chrome.driver", "C:\\Users\\SAURABH\\Downloads\\chromedriver-win64 (3)\\chromedriver-win64\\chromedriver.exe");
+	        driver = new ChromeDriver();
+	        driver.get(baseUrl);
+	  			  driver.manage().window().maximize();
+		  			 driver.manage().timeouts().implicitlyWait(30,TimeUnit.SECONDS);
+	 }
 		@AfterSuite
 		public void teardown() {
 			  driver.close();
@@ -64,7 +66,7 @@ public class Login {
 		 @Test (priority= 2)
 		  //TEST CASE NO 22 
 		  public void  EmptyEmailandPassword() throws InterruptedException  {
-				WebElement loginBtn= driver.findElement(By.xpath("//*[@id=\\\"root\\\"]/nav/div/div/div/button[3]"));
+				WebElement loginBtn= driver.findElement(By.xpath("//*[@id=\"root\"]/nav/div/div/div/button[3]"));
 				Thread.sleep(3000);
 				loginBtn.click();
 				Thread.sleep(3000);
@@ -84,12 +86,11 @@ public class Login {
 
 		 @Test (priority= 3)
 		  //TEST CASE NO 23 
-		  public void   InvalidEmail() throws InterruptedException  {
-				WebElement loginBtn= driver.findElement(By.xpath("//*[@id=\\\"root\\\"]/nav/div/div/div/button[3]"));
+		  public void  InvalidEmail() throws InterruptedException  {
+				WebElement loginBtn= driver.findElement(By.xpath("//*[@id=\"root\"]/nav/div/div/div/button[3]"));
 				Thread.sleep(3000);
 				loginBtn.click();
 				Thread.sleep(3000);
-				
 				WebElement emaildField=driver.findElement(By.xpath("//*[@id=\"root\"]/section/div/div[2]/div/div/div/div/form/div[1]/input"));
 				WebElement passwordField=driver.findElement(By.xpath("//*[@id=\"root\"]/section/div/div[2]/div/div/div/div/form/div[2]/div/input"));
 				WebElement submitBtn=driver.findElement(By.xpath("//*[@id=\"root\"]/section/div/div[2]/div/div/div/div/form/div[4]/div/button"));
